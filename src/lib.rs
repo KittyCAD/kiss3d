@@ -135,7 +135,6 @@ extern crate serde;
 
 #[cfg(not(target_arch = "wasm32"))]
 extern crate glutin;
-extern crate instant;
 
 pub use nalgebra;
 pub use ncollide3d;
