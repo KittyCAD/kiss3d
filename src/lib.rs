@@ -119,7 +119,6 @@ I’d love to see people improving this library for their own needs. However, ke
 
 Thanks to all the Rustaceans for their help, and their OpenGL bindings.
 */
-#![deny(warnings)]
 #![allow(non_upper_case_globals)]
 #![allow(unused_unsafe)] // FIXME: should be denied
 #![allow(missing_copy_implementations)]
@@ -134,13 +133,9 @@ extern crate rusttype;
 extern crate serde_derive;
 extern crate serde;
 
-#[cfg(feature = "conrod")]
-pub extern crate conrod_core as conrod;
 #[cfg(not(target_arch = "wasm32"))]
 extern crate glutin;
 extern crate instant;
-#[cfg(feature = "conrod")]
-pub use conrod::widget_ids;
 
 pub use nalgebra;
 pub use ncollide3d;
