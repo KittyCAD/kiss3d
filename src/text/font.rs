@@ -39,6 +39,7 @@ impl Font {
                     Some(Font::from_bytes(DATA).expect("Default font creation failed."));
             });
 
+            #[allow(static_mut_refs)]
             DEFAULT_FONT_SINGLETON.clone().unwrap()
         }
     }

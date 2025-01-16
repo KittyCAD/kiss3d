@@ -119,6 +119,7 @@ I’d love to see people improving this library for their own needs. However, ke
 
 Thanks to all the Rustaceans for their help, and their OpenGL bindings.
 */
+#![deny(warnings)]
 #![allow(non_upper_case_globals)]
 #![allow(unused_unsafe)] // FIXME: should be denied
 #![allow(missing_copy_implementations)]
@@ -137,7 +138,6 @@ extern crate serde;
 extern crate glutin;
 
 pub use nalgebra;
-pub use ncollide3d;
 
 #[deprecated(note = "Use the `renderer` module instead.")]
 pub use crate::renderer::line_renderer;

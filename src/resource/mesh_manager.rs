@@ -3,8 +3,6 @@
 use crate::loader::mtl::MtlMaterial;
 use crate::loader::obj;
 use crate::resource::Mesh;
-use ncollide3d::procedural;
-use ncollide3d::procedural::TriMesh;
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::io::Result as IoResult;
@@ -24,14 +22,14 @@ pub struct MeshManager {
 impl MeshManager {
     /// Creates a new mesh manager.
     pub fn new() -> MeshManager {
-        let mut res = MeshManager {
+        let res = MeshManager {
             meshes: HashMap::new(),
         };
 
-        let _ = res.add_trimesh(procedural::unit_sphere(50, 50, true), false, "sphere");
-        let _ = res.add_trimesh(procedural::unit_cuboid(), false, "cube");
-        let _ = res.add_trimesh(procedural::unit_cone(50), false, "cone");
-        let _ = res.add_trimesh(procedural::unit_cylinder(50), false, "cylinder");
+        // let _ = res.add_trimesh(procedural::unit_sphere(50, 50, true), false, "sphere");
+        // let _ = res.add_trimesh(procedural::unit_cuboid(), false, "cube");
+        // let _ = res.add_trimesh(procedural::unit_cone(50), false, "cone");
+        // let _ = res.add_trimesh(procedural::unit_cylinder(50), false, "cylinder");
 
         res
     }
@@ -50,21 +48,6 @@ impl MeshManager {
     /// Adds a mesh with the specified name to this cache.
     pub fn add(&mut self, mesh: Rc<RefCell<Mesh>>, name: &str) {
         let _ = self.meshes.insert(name.to_string(), mesh);
-    }
-
-    /// Adds a mesh with the specified mesh descriptor and name.
-    pub fn add_trimesh(
-        &mut self,
-        descr: TriMesh<f32>,
-        dynamic_draw: bool,
-        name: &str,
-    ) -> Rc<RefCell<Mesh>> {
-        let mesh = Mesh::from_trimesh(descr, dynamic_draw);
-        let mesh = Rc::new(RefCell::new(mesh));
-
-        self.add(mesh.clone(), name);
-
-        mesh
     }
 
     /// Removes a mesh from this cache.

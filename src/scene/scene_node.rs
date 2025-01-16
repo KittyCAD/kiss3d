@@ -5,8 +5,7 @@ use crate::resource::{Material, MaterialManager, Mesh, MeshManager, Texture, Tex
 use crate::scene::Object;
 use na;
 use na::{Isometry3, Point2, Point3, Translation3, UnitQuaternion, Vector3};
-use ncollide3d::procedural;
-use ncollide3d::procedural::TriMesh;
+use parry3d::shape::TriMesh;
 use std::cell::{Ref, RefCell, RefMut};
 use std::mem;
 use std::path::{Path, PathBuf};
@@ -729,56 +728,6 @@ impl SceneNode {
         res.expect("Unable to load the default cylinder geometry.")
     }
 
-    /// Adds a capsule to this node children. The capsule is initially centered at (0, 0, 0) and
-    /// has its principal axis aligned with the `y` axis.
-    ///
-    /// # Arguments
-    /// * `h` - the capsule height
-    /// * `r` - the capsule caps radius
-    pub fn add_capsule(&mut self, r: f32, h: f32) -> SceneNode {
-        self.add_trimesh(
-            procedural::capsule(&(r * 2.0), &h, 50, 50),
-            Vector3::from_element(1.0),
-        )
-    }
-
-    /// Adds a double-sided quad to this node children. The quad is initially centered at (0, 0,
-    /// 0). The quad itself is composed of a user-defined number of triangles regularly spaced on a
-    /// grid. This is the main way to draw height maps.
-    ///
-    /// # Arguments
-    /// * `w` - the quad width.
-    /// * `h` - the quad height.
-    /// * `wsubdivs` - number of horizontal subdivisions. This correspond to the number of squares
-    /// which will be placed horizontally on each line. Must not be `0`.
-    /// * `hsubdivs` - number of vertical subdivisions. This correspond to the number of squares
-    /// which will be placed vertically on each line. Must not be `0`.
-    /// update.
-    pub fn add_quad(&mut self, w: f32, h: f32, usubdivs: usize, vsubdivs: usize) -> SceneNode {
-        let mut node = self.add_trimesh(
-            procedural::quad(w, h, usubdivs, vsubdivs),
-            Vector3::from_element(1.0),
-        );
-        node.enable_backface_culling(false);
-
-        node
-    }
-
-    /// Adds a double-sided quad with the specified vertices.
-    pub fn add_quad_with_vertices(
-        &mut self,
-        vertices: &[Point3<f32>],
-        nhpoints: usize,
-        nvpoints: usize,
-    ) -> SceneNode {
-        let geom = procedural::quad_with_vertices(vertices, nhpoints, nvpoints);
-
-        let mut node = self.add_trimesh(geom, Vector3::from_element(1.0));
-        node.enable_backface_culling(false);
-
-        node
-    }
-
     /// Creates and adds a new object using the geometry registered as `geometry_name`.
     pub fn add_geom_with_name(
         &mut self,
@@ -798,7 +747,7 @@ impl SceneNode {
     }
 
     /// Creates and adds a new object using a mesh descriptor.
-    pub fn add_trimesh(&mut self, descr: TriMesh<f32>, scale: Vector3<f32>) -> SceneNode {
+    pub fn add_trimesh(&mut self, descr: TriMesh, scale: Vector3<f32>) -> SceneNode {
         self.add_mesh(
             Rc::new(RefCell::new(Mesh::from_trimesh(descr, false))),
             scale,

@@ -111,6 +111,7 @@ impl Context {
 
     pub fn get() -> Context {
         unsafe {
+            #[allow(static_mut_refs)]
             CONTEXT_SINGLETON
                 .clone()
                 .expect("GL context not initialized.")

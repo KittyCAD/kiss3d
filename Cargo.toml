@@ -35,15 +35,15 @@ either = "1"
 glow = "0.12"
 image = "0.24"
 libc = "0.2"
-nalgebra = "0.30"
-ncollide3d = "0.33"
+nalgebra = "0.33.2"
 num-traits = "0.2"
 rusttype = { version = "0.8.3", features = ["gpu_cache"] }
 serde = "1"
 serde_derive = "1"
 glutin = "0.26"
+parry3d = "0.18.0"
 
 [dev-dependencies]
-env_logger = "0.10"
-nalgebra = { version = "0.30", features = ["rand"] }
+env_logger = "0.11.6"
+nalgebra = { version = "0.33.2", features = ["rand"] }
 rand = "0.8"
