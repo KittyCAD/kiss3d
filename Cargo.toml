@@ -46,5 +46,4 @@ glutin = "0.26"
 [dev-dependencies]
 env_logger = "0.10"
 nalgebra = { version = "0.30", features = ["rand"] }
-ncollide2d = "0.33"
 rand = "0.8"
