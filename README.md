@@ -1,3 +1,13 @@
+# A fork of `kiss3d` with upgraded `nalgebra` version
+
+Please use the `upgrade-nalgebra` branch as a git patched dependency in your projects.
+
+This fork is so the `toolpaths` repo can use an up to date version of `nalgebra`. `kiss3d` is
+unfortunately unmaintained these days. This fork also rips out quite a few bits and pieces as I
+(@jamwaffles) don't need them.
+
+---
+
 # Kiss3d
 
 [![Crates.io](https://img.shields.io/crates/v/kiss3d.svg)](https://crates.io/crates/kiss3d)
@@ -6,32 +16,29 @@
 
 Keep It Simple, Stupid 3d graphics engine.
 
-This library is born from the frustration that today’s 3D
-graphics library are either:
+This library is born from the frustration that today’s 3D graphics library are either:
 
-* **Too low level**: you have to write your own shaders and opening a
-  window takes 8 hours, 300 lines of code and 10L of coffee.
-* High level, but **too hard to understand/use**: these libraries are made to
-  create beautiful photoreal (or close to it) animations or games.
-  They have many features; too many, in fact, if you just want to draw a few objects
-  on the screen with as little friction as possible.
+- **Too low level**: you have to write your own shaders and opening a window takes 8 hours, 300
+  lines of code and 10L of coffee.
+- High level, but **too hard to understand/use**: these libraries are made to create beautiful
+  photoreal (or close to it) animations or games. They have many features; too many, in fact, if you
+  just want to draw a few objects on the screen with as little friction as possible.
 
-**kiss3d** is not designed to be feature-complete or fast.
-It is designed to let you draw simple geometric figures and play with them
-with as little friction as possible.
+**kiss3d** is not designed to be feature-complete or fast. It is designed to let you draw simple
+geometric figures and play with them with as little friction as possible.
 
 ## Features
 
-* WASM compatible.
-* Out of the box, open a window with a default arc-ball camera and a point light.
-* First-person camera available as well, and user-defined cameras are possible.
-* Render boxes, spheres, cones, cylinders, quads and lines simply
-* Change an object's color or texture.
-* Change an object's transform (we use [nalgebra](http://nalgebra.org) to do that).
-* Create basic post-processing effects.
+- WASM compatible.
+- Out of the box, open a window with a default arc-ball camera and a point light.
+- First-person camera available as well, and user-defined cameras are possible.
+- Render boxes, spheres, cones, cylinders, quads and lines simply
+- Change an object's color or texture.
+- Change an object's transform (we use [nalgebra](http://nalgebra.org) to do that).
+- Create basic post-processing effects.
 
-As an example, creating a scene with a red, rotating cube with a light attached
-to the camera is as simple as (NOTE: this will **not** compile when targeting WASM):
+As an example, creating a scene with a red, rotating cube with a light attached to the camera is as
+simple as (NOTE: this will **not** compile when targeting WASM):
 
 ```rust
 extern crate kiss3d;
@@ -56,7 +63,8 @@ fn main() {
 }
 ```
 
-Making the same example compatible with both WASM and native platforms is slightly more complicated because **kiss3d** must control the render loop:
+Making the same example compatible with both WASM and native platforms is slightly more complicated
+because **kiss3d** must control the render loop:
 
 ```rust
 extern crate kiss3d;
@@ -94,15 +102,15 @@ fn main() {
 
 Some controls are handled by default by the engine (they can be overridden by the user):
 
-* `scroll`: zoom in / zoom out.
-* `left click + drag`: look around.
-* `right click + drag`: translate the view point.
-* `enter`: look at the origin (0.0, 0.0, 0.0).
+- `scroll`: zoom in / zoom out.
+- `left click + drag`: look around.
+- `right click + drag`: translate the view point.
+- `enter`: look at the origin (0.0, 0.0, 0.0).
 
 ## Compilation
 
-You will need the last stable build of the [rust compiler](http://www.rust-lang.org)
-and the official package manager: [cargo](https://github.com/rust-lang/cargo).
+You will need the last stable build of the [rust compiler](http://www.rust-lang.org) and the
+official package manager: [cargo](https://github.com/rust-lang/cargo).
 
 Simply add the following to your `Cargo.toml` file:
 
@@ -110,10 +118,12 @@ Simply add the following to your `Cargo.toml` file:
 [dependencies]
 kiss3d = "0.32"
 ```
-Note: If your project already uses nalgebra, you'll need the same version used by `kiss3d`, or you may run into compatibility issues.
 
+Note: If your project already uses nalgebra, you'll need the same version used by `kiss3d`, or you
+may run into compatibility issues.
 
 ## Contributions
+
 I’d love to see people improving this library for their own needs. However, keep in mind that
 **kiss3d** is KISS. One-liner features (from the user point of view) are preferred.
 
