@@ -1,5 +1,4 @@
 //! Test of kiss3d's planar camera. Just moves a cross around the screen whenever the mouse is clicked. Shows conversions between co-ordinate systems.
-extern crate kiss3d;
 extern crate nalgebra as na;
 
 use kiss3d::event::{Action, WindowEvent};

@@ -1,5 +1,3 @@
-extern crate kiss3d;
-extern crate nalgebra as na;
 
 use kiss3d::event::{Action, WindowEvent};
 use kiss3d::window::Window;

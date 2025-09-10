@@ -1,4 +1,3 @@
-extern crate kiss3d;
 
 use kiss3d::window::Window;
 

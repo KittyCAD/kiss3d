@@ -129,10 +129,8 @@ Thanks to all the Rustaceans for their help, and their OpenGL bindings.
 extern crate bitflags;
 extern crate nalgebra as na;
 extern crate num_traits as num;
-extern crate rusttype;
 #[macro_use]
 extern crate serde_derive;
-extern crate serde;
 
 #[cfg(not(target_arch = "wasm32"))]
 extern crate glutin;

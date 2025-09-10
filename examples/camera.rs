@@ -1,4 +1,3 @@
-extern crate kiss3d;
 extern crate nalgebra as na;
 
 use kiss3d::camera::{ArcBall, FirstPerson};
