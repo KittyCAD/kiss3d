@@ -2,18 +2,18 @@
 
 use crate::loader::mtl;
 use crate::loader::mtl::MtlMaterial;
-use crate::resource::vertex_index::VertexIndex;
 use crate::resource::GPUVec;
+use crate::resource::vertex_index::VertexIndex;
 use crate::resource::{AllocationType, BufferType, Mesh};
 use na::{Point2, Point3, Vector3};
 use num::Bounded;
-use std::collections::hash_map::Entry;
 use std::collections::HashMap;
+use std::collections::hash_map::Entry;
 use std::fs::File;
 use std::io::Read;
 use std::io::Result as IoResult;
-use std::iter::repeat;
 use std::iter::Filter;
+use std::iter::repeat;
 use std::path::{Path, PathBuf};
 use std::str::FromStr;
 use std::str::Split;
@@ -31,7 +31,7 @@ pub type Words<'a> = Filter<Split<'a, fn(char) -> bool>, fn(&&str) -> bool>;
 
 // FIXME: replace by split_whitespaces from rust 1.1
 /// Returns an iterator through all the words of a string.
-pub fn split_words(s: &str) -> Words {
+pub fn split_words(s: &str) -> Words<'_> {
     fn is_not_empty(s: &&str) -> bool {
         !s.is_empty()
     }
@@ -149,7 +149,9 @@ pub fn parse(
     }
 
     if uvs.is_empty() && ignore_uvs {
-        println!("Warning: some texture coordinates are missing. Dropping texture coordinates infos for every vertex.");
+        println!(
+            "Warning: some texture coordinates are missing. Dropping texture coordinates infos for every vertex."
+        );
     }
 
     if normals.is_empty() && ignore_normals {
