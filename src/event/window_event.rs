@@ -234,7 +234,7 @@ pub enum TouchAction {
 
 bitflags! {
     #[doc = "Key modifiers"]
-    #[derive(Serialize, Deserialize)]
+    #[derive(Copy, Clone, Debug, PartialEq, PartialOrd, Serialize, Deserialize)]
     pub struct Modifiers: i32 {
         const Shift       = 0b0001;
         const Control     = 0b0010;
