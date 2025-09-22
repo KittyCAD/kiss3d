@@ -35,7 +35,7 @@ either = "1"
 glow = "0.12"
 image = { version = "0.25.8", default-features = false }
 libc = "0.2"
-nalgebra = "0.34.0"
+nalgebra = { version = "0.34.0", default-features = false }
 num-traits = "0.2"
 rusttype = { version = "0.8.3", features = ["gpu_cache"] }
 serde = "1"
