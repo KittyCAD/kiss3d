@@ -33,7 +33,7 @@ path = "src/lib.rs"
 bitflags = { version = "2.9.4", features = ["serde"] }
 either = "1"
 glow = "0.12"
-image = "0.25.8"
+image = { version = "0.25.8", default-features = false }
 libc = "0.2"
 nalgebra = "0.34.0"
 num-traits = "0.2"
